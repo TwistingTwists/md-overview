@@ -1,18 +1,13 @@
 # md-overview
 
-CLI tool that parses markdown files and displays their heading structure as a hierarchical tree.
+Read large markdown files without reading them.
 
-## Why?
+`md-overview` scans a markdown file and returns its heading tree with line numbers — so an agent (or you) can locate the right section and read only those lines, instead of loading the entire file into context.
 
-Large markdown files are expensive to read in full. `md-overview` gives you the skeleton first — headings with line numbers — so you can jump directly to the relevant section.
-
-**Typical agent workflow:**
 ```
-1. md-overview large-doc.md        # scan structure, find the section you need
-2. read lines 37-50 of large-doc.md  # read only that section
+# Before: read 800 lines hoping the answer is in there
+# After:  scan structure in <1s, read 30 lines of the right section
 ```
-
-Instead of loading 2000 lines, you read 20.
 
 ## Install
 
@@ -23,13 +18,27 @@ cargo install md-overview
 ## Usage
 
 ```bash
-md-overview <markdown-file>
+md-overview <file.md>
 ```
+
+## Output format
+
+```
+Document Structure:
+
+├─ [H1:L1]  Title
+│ ├─ [H2:L5]  Section One
+│ │ └─ [H3:L10]  Subsection
+│ └─ [H2:L20]  Section Two
+└─ [H1:L30]  Another Top-Level
+```
+
+`H2` — heading depth (H1–H6). `L10` — line number in the source file. Jump straight there.
 
 ## Example
 
 ```bash
-md-overview document.md
+md-overview large-doc.md
 ```
 
 ```
@@ -58,7 +67,3 @@ Document Structure:
   ├─ [H2:L48] Contributing
   └─ [H2:L50] License
 ```
-
-`[H<depth>:L<line>]` — heading level and line number in the source file.
-
-See [CHEATSHEET.md](CHEATSHEET.md) for more usage tips including Obsidian vault workflows.
