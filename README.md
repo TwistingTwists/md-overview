@@ -2,6 +2,18 @@
 
 CLI tool that parses markdown files and displays their heading structure as a hierarchical tree.
 
+## Why?
+
+Large markdown files are expensive to read in full. `md-overview` gives you the skeleton first — headings with line numbers — so you can jump directly to the relevant section.
+
+**Typical agent workflow:**
+```
+1. md-overview large-doc.md        # scan structure, find the section you need
+2. read lines 37-50 of large-doc.md  # read only that section
+```
+
+Instead of loading 2000 lines, you read 20.
+
 ## Install
 
 ```bash
