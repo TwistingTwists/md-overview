@@ -132,26 +132,26 @@ fn extract_text(node: &markdown::mdast::Node) -> String {
         Node::InlineCode(code) => code.value.clone(),
         Node::Strong(strong) => {
             strong.children.iter()
-                .map(|child| extract_text(child))
+                .map(extract_text)
                 .collect::<Vec<_>>()
                 .join("")
         }
         Node::Emphasis(em) => {
             em.children.iter()
-                .map(|child| extract_text(child))
+                .map(extract_text)
                 .collect::<Vec<_>>()
                 .join("")
         }
         Node::Heading(heading) => {
             heading.children.iter()
-                .map(|child| extract_text(child))
+                .map(extract_text)
                 .collect::<Vec<_>>()
                 .join("")
         }
         _ => {
             if let Some(children) = get_children(node) {
                 children.iter()
-                    .map(|child| extract_text(child))
+                    .map(extract_text)
                     .collect::<Vec<_>>()
                     .join("")
             } else {
