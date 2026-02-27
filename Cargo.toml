@@ -1,0 +1,22 @@
+[package]
+name = "md-overview"
+version = "0.1.0"
+edition = "2024"
+authors = ["Abhishek Tripathi <abhishek.tripathi456@gmail.com>"]
+description = "CLI tool to display markdown document structure as a heading tree"
+license = "MIT"
+repository = "https://github.com/TwistingTwists/md-overview"
+keywords = ["markdown", "cli", "obsidian", "headings", "tree"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+markdown = "1.0.0"
+clap = { version = "4.5", features = ["derive"] }
+
+[profile.release]
+opt-level = "z"           # optimize for size
+lto = true                # enable link-time optimization
+codegen-units = 1        # single codegen unit (enables better optimization)
+strip = true             # strip symbols
+panic = "abort"          # smaller panic handler
+

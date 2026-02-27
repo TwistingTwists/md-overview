@@ -1,0 +1,7 @@
+data_dir/
+target/
+.env
+*.log
+.DS_Store
+Thumbs.db
+.claude/
